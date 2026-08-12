@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedBillboardsIndexRouteImport } from './routes/_authenticated/billboards.index'
 import { Route as AuthenticatedBillboardsPaymentsRouteImport } from './routes/_authenticated/billboards.payments'
 import { Route as AuthenticatedBudgetExpensesRouteImport } from './routes/_authenticated/budget.expenses'
@@ -42,6 +43,11 @@ const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedBillboardsIndexRoute =
   AuthenticatedBillboardsIndexRouteImport.update({
@@ -141,6 +147,7 @@ const AuthenticatedPaymentsPendingRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/billboards/payments': typeof AuthenticatedBillboardsPaymentsRoute
   '/budget/expenses': typeof AuthenticatedBudgetExpensesRoute
   '/budget/international': typeof AuthenticatedBudgetInternationalRoute
@@ -161,6 +168,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/billboards/payments': typeof AuthenticatedBillboardsPaymentsRoute
   '/budget/expenses': typeof AuthenticatedBudgetExpensesRoute
   '/budget/international': typeof AuthenticatedBudgetInternationalRoute
@@ -183,6 +191,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/billboards/payments': typeof AuthenticatedBillboardsPaymentsRoute
   '/_authenticated/budget/expenses': typeof AuthenticatedBudgetExpensesRoute
   '/_authenticated/budget/international': typeof AuthenticatedBudgetInternationalRoute
@@ -205,6 +214,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/dashboard'
     | '/billboards/payments'
     | '/budget/expenses'
     | '/budget/international'
@@ -225,6 +235,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/dashboard'
     | '/billboards/payments'
     | '/budget/expenses'
     | '/budget/international'
@@ -246,6 +257,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/_authenticated/dashboard'
     | '/_authenticated/billboards/payments'
     | '/_authenticated/budget/expenses'
     | '/_authenticated/budget/international'
@@ -292,6 +304,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/billboards/': {
       id: '/_authenticated/billboards/'
@@ -409,6 +428,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedBillboardsPaymentsRoute: typeof AuthenticatedBillboardsPaymentsRoute
   AuthenticatedBudgetExpensesRoute: typeof AuthenticatedBudgetExpensesRoute
   AuthenticatedBudgetInternationalRoute: typeof AuthenticatedBudgetInternationalRoute
@@ -428,6 +448,7 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedBillboardsPaymentsRoute: AuthenticatedBillboardsPaymentsRoute,
   AuthenticatedBudgetExpensesRoute: AuthenticatedBudgetExpensesRoute,
   AuthenticatedBudgetInternationalRoute: AuthenticatedBudgetInternationalRoute,
