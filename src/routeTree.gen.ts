@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedBillboardsIndexRouteImport } from './routes/_authenticated/billboards.index'
 import { Route as AuthenticatedBillboardsPaymentsRouteImport } from './routes/_authenticated/billboards.payments'
+import { Route as AuthenticatedBillboardsTrackingRouteImport } from './routes/_authenticated/billboards.tracking'
 import { Route as AuthenticatedBudgetExpensesRouteImport } from './routes/_authenticated/budget.expenses'
 import { Route as AuthenticatedBudgetInternationalRouteImport } from './routes/_authenticated/budget.international'
 import { Route as AuthenticatedBudgetLocalRouteImport } from './routes/_authenticated/budget.local'
@@ -29,6 +30,12 @@ import { Route as AuthenticatedPaymentsApprovedRouteImport } from './routes/_aut
 import { Route as AuthenticatedPaymentsHistoryRouteImport } from './routes/_authenticated/payments.history'
 import { Route as AuthenticatedPaymentsPaidRouteImport } from './routes/_authenticated/payments.paid'
 import { Route as AuthenticatedPaymentsPendingRouteImport } from './routes/_authenticated/payments.pending'
+import { Route as AuthenticatedReportsBillboardsRouteImport } from './routes/_authenticated/reports.billboards'
+import { Route as AuthenticatedReportsBudgetRouteImport } from './routes/_authenticated/reports.budget'
+import { Route as AuthenticatedReportsInfluencersRouteImport } from './routes/_authenticated/reports.influencers'
+import { Route as AuthenticatedReportsLcdRouteImport } from './routes/_authenticated/reports.lcd'
+import { Route as AuthenticatedReportsMonthlyRouteImport } from './routes/_authenticated/reports.monthly'
+import { Route as AuthenticatedReportsPaymentsRouteImport } from './routes/_authenticated/reports.payments'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -59,6 +66,12 @@ const AuthenticatedBillboardsPaymentsRoute =
   AuthenticatedBillboardsPaymentsRouteImport.update({
     id: '/billboards/payments',
     path: '/billboards/payments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBillboardsTrackingRoute =
+  AuthenticatedBillboardsTrackingRouteImport.update({
+    id: '/billboards/tracking',
+    path: '/billboards/tracking',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedBudgetExpensesRoute =
@@ -143,12 +156,48 @@ const AuthenticatedPaymentsPendingRoute =
     path: '/payments/pending',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedReportsBillboardsRoute =
+  AuthenticatedReportsBillboardsRouteImport.update({
+    id: '/reports/billboards',
+    path: '/reports/billboards',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsBudgetRoute =
+  AuthenticatedReportsBudgetRouteImport.update({
+    id: '/reports/budget',
+    path: '/reports/budget',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsInfluencersRoute =
+  AuthenticatedReportsInfluencersRouteImport.update({
+    id: '/reports/influencers',
+    path: '/reports/influencers',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsLcdRoute = AuthenticatedReportsLcdRouteImport.update({
+  id: '/reports/lcd',
+  path: '/reports/lcd',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedReportsMonthlyRoute =
+  AuthenticatedReportsMonthlyRouteImport.update({
+    id: '/reports/monthly',
+    path: '/reports/monthly',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReportsPaymentsRoute =
+  AuthenticatedReportsPaymentsRouteImport.update({
+    id: '/reports/payments',
+    path: '/reports/payments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/billboards/payments': typeof AuthenticatedBillboardsPaymentsRoute
+  '/billboards/tracking': typeof AuthenticatedBillboardsTrackingRoute
   '/budget/expenses': typeof AuthenticatedBudgetExpensesRoute
   '/budget/international': typeof AuthenticatedBudgetInternationalRoute
   '/budget/local': typeof AuthenticatedBudgetLocalRoute
@@ -161,6 +210,12 @@ export interface FileRoutesByFullPath {
   '/payments/history': typeof AuthenticatedPaymentsHistoryRoute
   '/payments/paid': typeof AuthenticatedPaymentsPaidRoute
   '/payments/pending': typeof AuthenticatedPaymentsPendingRoute
+  '/reports/billboards': typeof AuthenticatedReportsBillboardsRoute
+  '/reports/budget': typeof AuthenticatedReportsBudgetRoute
+  '/reports/influencers': typeof AuthenticatedReportsInfluencersRoute
+  '/reports/lcd': typeof AuthenticatedReportsLcdRoute
+  '/reports/monthly': typeof AuthenticatedReportsMonthlyRoute
+  '/reports/payments': typeof AuthenticatedReportsPaymentsRoute
   '/billboards/': typeof AuthenticatedBillboardsIndexRoute
   '/influencers/': typeof AuthenticatedInfluencersIndexRoute
   '/lcd/': typeof AuthenticatedLcdIndexRoute
@@ -170,6 +225,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/billboards/payments': typeof AuthenticatedBillboardsPaymentsRoute
+  '/billboards/tracking': typeof AuthenticatedBillboardsTrackingRoute
   '/budget/expenses': typeof AuthenticatedBudgetExpensesRoute
   '/budget/international': typeof AuthenticatedBudgetInternationalRoute
   '/budget/local': typeof AuthenticatedBudgetLocalRoute
@@ -182,6 +238,12 @@ export interface FileRoutesByTo {
   '/payments/history': typeof AuthenticatedPaymentsHistoryRoute
   '/payments/paid': typeof AuthenticatedPaymentsPaidRoute
   '/payments/pending': typeof AuthenticatedPaymentsPendingRoute
+  '/reports/billboards': typeof AuthenticatedReportsBillboardsRoute
+  '/reports/budget': typeof AuthenticatedReportsBudgetRoute
+  '/reports/influencers': typeof AuthenticatedReportsInfluencersRoute
+  '/reports/lcd': typeof AuthenticatedReportsLcdRoute
+  '/reports/monthly': typeof AuthenticatedReportsMonthlyRoute
+  '/reports/payments': typeof AuthenticatedReportsPaymentsRoute
   '/billboards': typeof AuthenticatedBillboardsIndexRoute
   '/influencers': typeof AuthenticatedInfluencersIndexRoute
   '/lcd': typeof AuthenticatedLcdIndexRoute
@@ -193,6 +255,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/billboards/payments': typeof AuthenticatedBillboardsPaymentsRoute
+  '/_authenticated/billboards/tracking': typeof AuthenticatedBillboardsTrackingRoute
   '/_authenticated/budget/expenses': typeof AuthenticatedBudgetExpensesRoute
   '/_authenticated/budget/international': typeof AuthenticatedBudgetInternationalRoute
   '/_authenticated/budget/local': typeof AuthenticatedBudgetLocalRoute
@@ -205,6 +268,12 @@ export interface FileRoutesById {
   '/_authenticated/payments/history': typeof AuthenticatedPaymentsHistoryRoute
   '/_authenticated/payments/paid': typeof AuthenticatedPaymentsPaidRoute
   '/_authenticated/payments/pending': typeof AuthenticatedPaymentsPendingRoute
+  '/_authenticated/reports/billboards': typeof AuthenticatedReportsBillboardsRoute
+  '/_authenticated/reports/budget': typeof AuthenticatedReportsBudgetRoute
+  '/_authenticated/reports/influencers': typeof AuthenticatedReportsInfluencersRoute
+  '/_authenticated/reports/lcd': typeof AuthenticatedReportsLcdRoute
+  '/_authenticated/reports/monthly': typeof AuthenticatedReportsMonthlyRoute
+  '/_authenticated/reports/payments': typeof AuthenticatedReportsPaymentsRoute
   '/_authenticated/billboards/': typeof AuthenticatedBillboardsIndexRoute
   '/_authenticated/influencers/': typeof AuthenticatedInfluencersIndexRoute
   '/_authenticated/lcd/': typeof AuthenticatedLcdIndexRoute
@@ -216,6 +285,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/billboards/payments'
+    | '/billboards/tracking'
     | '/budget/expenses'
     | '/budget/international'
     | '/budget/local'
@@ -228,6 +298,12 @@ export interface FileRouteTypes {
     | '/payments/history'
     | '/payments/paid'
     | '/payments/pending'
+    | '/reports/billboards'
+    | '/reports/budget'
+    | '/reports/influencers'
+    | '/reports/lcd'
+    | '/reports/monthly'
+    | '/reports/payments'
     | '/billboards/'
     | '/influencers/'
     | '/lcd/'
@@ -237,6 +313,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/billboards/payments'
+    | '/billboards/tracking'
     | '/budget/expenses'
     | '/budget/international'
     | '/budget/local'
@@ -249,6 +326,12 @@ export interface FileRouteTypes {
     | '/payments/history'
     | '/payments/paid'
     | '/payments/pending'
+    | '/reports/billboards'
+    | '/reports/budget'
+    | '/reports/influencers'
+    | '/reports/lcd'
+    | '/reports/monthly'
+    | '/reports/payments'
     | '/billboards'
     | '/influencers'
     | '/lcd'
@@ -259,6 +342,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/_authenticated/dashboard'
     | '/_authenticated/billboards/payments'
+    | '/_authenticated/billboards/tracking'
     | '/_authenticated/budget/expenses'
     | '/_authenticated/budget/international'
     | '/_authenticated/budget/local'
@@ -271,6 +355,12 @@ export interface FileRouteTypes {
     | '/_authenticated/payments/history'
     | '/_authenticated/payments/paid'
     | '/_authenticated/payments/pending'
+    | '/_authenticated/reports/billboards'
+    | '/_authenticated/reports/budget'
+    | '/_authenticated/reports/influencers'
+    | '/_authenticated/reports/lcd'
+    | '/_authenticated/reports/monthly'
+    | '/_authenticated/reports/payments'
     | '/_authenticated/billboards/'
     | '/_authenticated/influencers/'
     | '/_authenticated/lcd/'
@@ -324,6 +414,13 @@ declare module '@tanstack/react-router' {
       path: '/billboards/payments'
       fullPath: '/billboards/payments'
       preLoaderRoute: typeof AuthenticatedBillboardsPaymentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/billboards/tracking': {
+      id: '/_authenticated/billboards/tracking'
+      path: '/billboards/tracking'
+      fullPath: '/billboards/tracking'
+      preLoaderRoute: typeof AuthenticatedBillboardsTrackingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/budget/expenses': {
@@ -424,12 +521,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPaymentsPendingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/reports/billboards': {
+      id: '/_authenticated/reports/billboards'
+      path: '/reports/billboards'
+      fullPath: '/reports/billboards'
+      preLoaderRoute: typeof AuthenticatedReportsBillboardsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports/budget': {
+      id: '/_authenticated/reports/budget'
+      path: '/reports/budget'
+      fullPath: '/reports/budget'
+      preLoaderRoute: typeof AuthenticatedReportsBudgetRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports/influencers': {
+      id: '/_authenticated/reports/influencers'
+      path: '/reports/influencers'
+      fullPath: '/reports/influencers'
+      preLoaderRoute: typeof AuthenticatedReportsInfluencersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports/lcd': {
+      id: '/_authenticated/reports/lcd'
+      path: '/reports/lcd'
+      fullPath: '/reports/lcd'
+      preLoaderRoute: typeof AuthenticatedReportsLcdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports/monthly': {
+      id: '/_authenticated/reports/monthly'
+      path: '/reports/monthly'
+      fullPath: '/reports/monthly'
+      preLoaderRoute: typeof AuthenticatedReportsMonthlyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports/payments': {
+      id: '/_authenticated/reports/payments'
+      path: '/reports/payments'
+      fullPath: '/reports/payments'
+      preLoaderRoute: typeof AuthenticatedReportsPaymentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedBillboardsPaymentsRoute: typeof AuthenticatedBillboardsPaymentsRoute
+  AuthenticatedBillboardsTrackingRoute: typeof AuthenticatedBillboardsTrackingRoute
   AuthenticatedBudgetExpensesRoute: typeof AuthenticatedBudgetExpensesRoute
   AuthenticatedBudgetInternationalRoute: typeof AuthenticatedBudgetInternationalRoute
   AuthenticatedBudgetLocalRoute: typeof AuthenticatedBudgetLocalRoute
@@ -442,6 +582,12 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedPaymentsHistoryRoute: typeof AuthenticatedPaymentsHistoryRoute
   AuthenticatedPaymentsPaidRoute: typeof AuthenticatedPaymentsPaidRoute
   AuthenticatedPaymentsPendingRoute: typeof AuthenticatedPaymentsPendingRoute
+  AuthenticatedReportsBillboardsRoute: typeof AuthenticatedReportsBillboardsRoute
+  AuthenticatedReportsBudgetRoute: typeof AuthenticatedReportsBudgetRoute
+  AuthenticatedReportsInfluencersRoute: typeof AuthenticatedReportsInfluencersRoute
+  AuthenticatedReportsLcdRoute: typeof AuthenticatedReportsLcdRoute
+  AuthenticatedReportsMonthlyRoute: typeof AuthenticatedReportsMonthlyRoute
+  AuthenticatedReportsPaymentsRoute: typeof AuthenticatedReportsPaymentsRoute
   AuthenticatedBillboardsIndexRoute: typeof AuthenticatedBillboardsIndexRoute
   AuthenticatedInfluencersIndexRoute: typeof AuthenticatedInfluencersIndexRoute
   AuthenticatedLcdIndexRoute: typeof AuthenticatedLcdIndexRoute
@@ -450,6 +596,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedBillboardsPaymentsRoute: AuthenticatedBillboardsPaymentsRoute,
+  AuthenticatedBillboardsTrackingRoute: AuthenticatedBillboardsTrackingRoute,
   AuthenticatedBudgetExpensesRoute: AuthenticatedBudgetExpensesRoute,
   AuthenticatedBudgetInternationalRoute: AuthenticatedBudgetInternationalRoute,
   AuthenticatedBudgetLocalRoute: AuthenticatedBudgetLocalRoute,
@@ -463,6 +610,12 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedPaymentsHistoryRoute: AuthenticatedPaymentsHistoryRoute,
   AuthenticatedPaymentsPaidRoute: AuthenticatedPaymentsPaidRoute,
   AuthenticatedPaymentsPendingRoute: AuthenticatedPaymentsPendingRoute,
+  AuthenticatedReportsBillboardsRoute: AuthenticatedReportsBillboardsRoute,
+  AuthenticatedReportsBudgetRoute: AuthenticatedReportsBudgetRoute,
+  AuthenticatedReportsInfluencersRoute: AuthenticatedReportsInfluencersRoute,
+  AuthenticatedReportsLcdRoute: AuthenticatedReportsLcdRoute,
+  AuthenticatedReportsMonthlyRoute: AuthenticatedReportsMonthlyRoute,
+  AuthenticatedReportsPaymentsRoute: AuthenticatedReportsPaymentsRoute,
   AuthenticatedBillboardsIndexRoute: AuthenticatedBillboardsIndexRoute,
   AuthenticatedInfluencersIndexRoute: AuthenticatedInfluencersIndexRoute,
   AuthenticatedLcdIndexRoute: AuthenticatedLcdIndexRoute,
