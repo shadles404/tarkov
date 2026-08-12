@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ResourcePage } from "@/components/ops/resource-page";
 import * as M from "@/lib/modules";
 
-export const Route = createFileRoute("/_authenticated/influencers")({
+export const Route = createFileRoute("/_authenticated/influencers/")({
   head: () => ({
     meta: [
       { title: "Influencers — Marketing Operations" },

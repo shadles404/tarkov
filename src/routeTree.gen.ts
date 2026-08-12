@@ -10,33 +10,264 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedBillboardsIndexRouteImport } from './routes/_authenticated/billboards.index'
+import { Route as AuthenticatedBillboardsPaymentsRouteImport } from './routes/_authenticated/billboards.payments'
+import { Route as AuthenticatedBudgetExpensesRouteImport } from './routes/_authenticated/budget.expenses'
+import { Route as AuthenticatedBudgetInternationalRouteImport } from './routes/_authenticated/budget.international'
+import { Route as AuthenticatedBudgetLocalRouteImport } from './routes/_authenticated/budget.local'
+import { Route as AuthenticatedInfluencersIndexRouteImport } from './routes/_authenticated/influencers.index'
+import { Route as AuthenticatedInfluencersDeliveriesRouteImport } from './routes/_authenticated/influencers.deliveries'
+import { Route as AuthenticatedInfluencersPaymentsRouteImport } from './routes/_authenticated/influencers.payments'
+import { Route as AuthenticatedInfluencersTargetsRouteImport } from './routes/_authenticated/influencers.targets'
+import { Route as AuthenticatedLcdIndexRouteImport } from './routes/_authenticated/lcd.index'
+import { Route as AuthenticatedLcdPaymentsRouteImport } from './routes/_authenticated/lcd.payments'
+import { Route as AuthenticatedLcdVideosRouteImport } from './routes/_authenticated/lcd.videos'
+import { Route as AuthenticatedPaymentsApprovedRouteImport } from './routes/_authenticated/payments.approved'
+import { Route as AuthenticatedPaymentsHistoryRouteImport } from './routes/_authenticated/payments.history'
+import { Route as AuthenticatedPaymentsPaidRouteImport } from './routes/_authenticated/payments.paid'
+import { Route as AuthenticatedPaymentsPendingRouteImport } from './routes/_authenticated/payments.pending'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedBillboardsIndexRoute =
+  AuthenticatedBillboardsIndexRouteImport.update({
+    id: '/billboards/',
+    path: '/billboards/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBillboardsPaymentsRoute =
+  AuthenticatedBillboardsPaymentsRouteImport.update({
+    id: '/billboards/payments',
+    path: '/billboards/payments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBudgetExpensesRoute =
+  AuthenticatedBudgetExpensesRouteImport.update({
+    id: '/budget/expenses',
+    path: '/budget/expenses',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBudgetInternationalRoute =
+  AuthenticatedBudgetInternationalRouteImport.update({
+    id: '/budget/international',
+    path: '/budget/international',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBudgetLocalRoute =
+  AuthenticatedBudgetLocalRouteImport.update({
+    id: '/budget/local',
+    path: '/budget/local',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedInfluencersIndexRoute =
+  AuthenticatedInfluencersIndexRouteImport.update({
+    id: '/influencers/',
+    path: '/influencers/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedInfluencersDeliveriesRoute =
+  AuthenticatedInfluencersDeliveriesRouteImport.update({
+    id: '/influencers/deliveries',
+    path: '/influencers/deliveries',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedInfluencersPaymentsRoute =
+  AuthenticatedInfluencersPaymentsRouteImport.update({
+    id: '/influencers/payments',
+    path: '/influencers/payments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedInfluencersTargetsRoute =
+  AuthenticatedInfluencersTargetsRouteImport.update({
+    id: '/influencers/targets',
+    path: '/influencers/targets',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedLcdIndexRoute = AuthenticatedLcdIndexRouteImport.update({
+  id: '/lcd/',
+  path: '/lcd/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedLcdPaymentsRoute =
+  AuthenticatedLcdPaymentsRouteImport.update({
+    id: '/lcd/payments',
+    path: '/lcd/payments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedLcdVideosRoute = AuthenticatedLcdVideosRouteImport.update({
+  id: '/lcd/videos',
+  path: '/lcd/videos',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPaymentsApprovedRoute =
+  AuthenticatedPaymentsApprovedRouteImport.update({
+    id: '/payments/approved',
+    path: '/payments/approved',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPaymentsHistoryRoute =
+  AuthenticatedPaymentsHistoryRouteImport.update({
+    id: '/payments/history',
+    path: '/payments/history',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPaymentsPaidRoute =
+  AuthenticatedPaymentsPaidRouteImport.update({
+    id: '/payments/paid',
+    path: '/payments/paid',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPaymentsPendingRoute =
+  AuthenticatedPaymentsPendingRouteImport.update({
+    id: '/payments/pending',
+    path: '/payments/pending',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/billboards/payments': typeof AuthenticatedBillboardsPaymentsRoute
+  '/budget/expenses': typeof AuthenticatedBudgetExpensesRoute
+  '/budget/international': typeof AuthenticatedBudgetInternationalRoute
+  '/budget/local': typeof AuthenticatedBudgetLocalRoute
+  '/influencers/deliveries': typeof AuthenticatedInfluencersDeliveriesRoute
+  '/influencers/payments': typeof AuthenticatedInfluencersPaymentsRoute
+  '/influencers/targets': typeof AuthenticatedInfluencersTargetsRoute
+  '/lcd/payments': typeof AuthenticatedLcdPaymentsRoute
+  '/lcd/videos': typeof AuthenticatedLcdVideosRoute
+  '/payments/approved': typeof AuthenticatedPaymentsApprovedRoute
+  '/payments/history': typeof AuthenticatedPaymentsHistoryRoute
+  '/payments/paid': typeof AuthenticatedPaymentsPaidRoute
+  '/payments/pending': typeof AuthenticatedPaymentsPendingRoute
+  '/billboards/': typeof AuthenticatedBillboardsIndexRoute
+  '/influencers/': typeof AuthenticatedInfluencersIndexRoute
+  '/lcd/': typeof AuthenticatedLcdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/billboards/payments': typeof AuthenticatedBillboardsPaymentsRoute
+  '/budget/expenses': typeof AuthenticatedBudgetExpensesRoute
+  '/budget/international': typeof AuthenticatedBudgetInternationalRoute
+  '/budget/local': typeof AuthenticatedBudgetLocalRoute
+  '/influencers/deliveries': typeof AuthenticatedInfluencersDeliveriesRoute
+  '/influencers/payments': typeof AuthenticatedInfluencersPaymentsRoute
+  '/influencers/targets': typeof AuthenticatedInfluencersTargetsRoute
+  '/lcd/payments': typeof AuthenticatedLcdPaymentsRoute
+  '/lcd/videos': typeof AuthenticatedLcdVideosRoute
+  '/payments/approved': typeof AuthenticatedPaymentsApprovedRoute
+  '/payments/history': typeof AuthenticatedPaymentsHistoryRoute
+  '/payments/paid': typeof AuthenticatedPaymentsPaidRoute
+  '/payments/pending': typeof AuthenticatedPaymentsPendingRoute
+  '/billboards': typeof AuthenticatedBillboardsIndexRoute
+  '/influencers': typeof AuthenticatedInfluencersIndexRoute
+  '/lcd': typeof AuthenticatedLcdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/billboards/payments': typeof AuthenticatedBillboardsPaymentsRoute
+  '/_authenticated/budget/expenses': typeof AuthenticatedBudgetExpensesRoute
+  '/_authenticated/budget/international': typeof AuthenticatedBudgetInternationalRoute
+  '/_authenticated/budget/local': typeof AuthenticatedBudgetLocalRoute
+  '/_authenticated/influencers/deliveries': typeof AuthenticatedInfluencersDeliveriesRoute
+  '/_authenticated/influencers/payments': typeof AuthenticatedInfluencersPaymentsRoute
+  '/_authenticated/influencers/targets': typeof AuthenticatedInfluencersTargetsRoute
+  '/_authenticated/lcd/payments': typeof AuthenticatedLcdPaymentsRoute
+  '/_authenticated/lcd/videos': typeof AuthenticatedLcdVideosRoute
+  '/_authenticated/payments/approved': typeof AuthenticatedPaymentsApprovedRoute
+  '/_authenticated/payments/history': typeof AuthenticatedPaymentsHistoryRoute
+  '/_authenticated/payments/paid': typeof AuthenticatedPaymentsPaidRoute
+  '/_authenticated/payments/pending': typeof AuthenticatedPaymentsPendingRoute
+  '/_authenticated/billboards/': typeof AuthenticatedBillboardsIndexRoute
+  '/_authenticated/influencers/': typeof AuthenticatedInfluencersIndexRoute
+  '/_authenticated/lcd/': typeof AuthenticatedLcdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/billboards/payments'
+    | '/budget/expenses'
+    | '/budget/international'
+    | '/budget/local'
+    | '/influencers/deliveries'
+    | '/influencers/payments'
+    | '/influencers/targets'
+    | '/lcd/payments'
+    | '/lcd/videos'
+    | '/payments/approved'
+    | '/payments/history'
+    | '/payments/paid'
+    | '/payments/pending'
+    | '/billboards/'
+    | '/influencers/'
+    | '/lcd/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/billboards/payments'
+    | '/budget/expenses'
+    | '/budget/international'
+    | '/budget/local'
+    | '/influencers/deliveries'
+    | '/influencers/payments'
+    | '/influencers/targets'
+    | '/lcd/payments'
+    | '/lcd/videos'
+    | '/payments/approved'
+    | '/payments/history'
+    | '/payments/paid'
+    | '/payments/pending'
+    | '/billboards'
+    | '/influencers'
+    | '/lcd'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/billboards/payments'
+    | '/_authenticated/budget/expenses'
+    | '/_authenticated/budget/international'
+    | '/_authenticated/budget/local'
+    | '/_authenticated/influencers/deliveries'
+    | '/_authenticated/influencers/payments'
+    | '/_authenticated/influencers/targets'
+    | '/_authenticated/lcd/payments'
+    | '/_authenticated/lcd/videos'
+    | '/_authenticated/payments/approved'
+    | '/_authenticated/payments/history'
+    | '/_authenticated/payments/paid'
+    | '/_authenticated/payments/pending'
+    | '/_authenticated/billboards/'
+    | '/_authenticated/influencers/'
+    | '/_authenticated/lcd/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +279,181 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/billboards/': {
+      id: '/_authenticated/billboards/'
+      path: '/billboards'
+      fullPath: '/billboards/'
+      preLoaderRoute: typeof AuthenticatedBillboardsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/billboards/payments': {
+      id: '/_authenticated/billboards/payments'
+      path: '/billboards/payments'
+      fullPath: '/billboards/payments'
+      preLoaderRoute: typeof AuthenticatedBillboardsPaymentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/budget/expenses': {
+      id: '/_authenticated/budget/expenses'
+      path: '/budget/expenses'
+      fullPath: '/budget/expenses'
+      preLoaderRoute: typeof AuthenticatedBudgetExpensesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/budget/international': {
+      id: '/_authenticated/budget/international'
+      path: '/budget/international'
+      fullPath: '/budget/international'
+      preLoaderRoute: typeof AuthenticatedBudgetInternationalRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/budget/local': {
+      id: '/_authenticated/budget/local'
+      path: '/budget/local'
+      fullPath: '/budget/local'
+      preLoaderRoute: typeof AuthenticatedBudgetLocalRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/influencers/': {
+      id: '/_authenticated/influencers/'
+      path: '/influencers'
+      fullPath: '/influencers/'
+      preLoaderRoute: typeof AuthenticatedInfluencersIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/influencers/deliveries': {
+      id: '/_authenticated/influencers/deliveries'
+      path: '/influencers/deliveries'
+      fullPath: '/influencers/deliveries'
+      preLoaderRoute: typeof AuthenticatedInfluencersDeliveriesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/influencers/payments': {
+      id: '/_authenticated/influencers/payments'
+      path: '/influencers/payments'
+      fullPath: '/influencers/payments'
+      preLoaderRoute: typeof AuthenticatedInfluencersPaymentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/influencers/targets': {
+      id: '/_authenticated/influencers/targets'
+      path: '/influencers/targets'
+      fullPath: '/influencers/targets'
+      preLoaderRoute: typeof AuthenticatedInfluencersTargetsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/lcd/': {
+      id: '/_authenticated/lcd/'
+      path: '/lcd'
+      fullPath: '/lcd/'
+      preLoaderRoute: typeof AuthenticatedLcdIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/lcd/payments': {
+      id: '/_authenticated/lcd/payments'
+      path: '/lcd/payments'
+      fullPath: '/lcd/payments'
+      preLoaderRoute: typeof AuthenticatedLcdPaymentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/lcd/videos': {
+      id: '/_authenticated/lcd/videos'
+      path: '/lcd/videos'
+      fullPath: '/lcd/videos'
+      preLoaderRoute: typeof AuthenticatedLcdVideosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/payments/approved': {
+      id: '/_authenticated/payments/approved'
+      path: '/payments/approved'
+      fullPath: '/payments/approved'
+      preLoaderRoute: typeof AuthenticatedPaymentsApprovedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/payments/history': {
+      id: '/_authenticated/payments/history'
+      path: '/payments/history'
+      fullPath: '/payments/history'
+      preLoaderRoute: typeof AuthenticatedPaymentsHistoryRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/payments/paid': {
+      id: '/_authenticated/payments/paid'
+      path: '/payments/paid'
+      fullPath: '/payments/paid'
+      preLoaderRoute: typeof AuthenticatedPaymentsPaidRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/payments/pending': {
+      id: '/_authenticated/payments/pending'
+      path: '/payments/pending'
+      fullPath: '/payments/pending'
+      preLoaderRoute: typeof AuthenticatedPaymentsPendingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBillboardsPaymentsRoute: typeof AuthenticatedBillboardsPaymentsRoute
+  AuthenticatedBudgetExpensesRoute: typeof AuthenticatedBudgetExpensesRoute
+  AuthenticatedBudgetInternationalRoute: typeof AuthenticatedBudgetInternationalRoute
+  AuthenticatedBudgetLocalRoute: typeof AuthenticatedBudgetLocalRoute
+  AuthenticatedInfluencersDeliveriesRoute: typeof AuthenticatedInfluencersDeliveriesRoute
+  AuthenticatedInfluencersPaymentsRoute: typeof AuthenticatedInfluencersPaymentsRoute
+  AuthenticatedInfluencersTargetsRoute: typeof AuthenticatedInfluencersTargetsRoute
+  AuthenticatedLcdPaymentsRoute: typeof AuthenticatedLcdPaymentsRoute
+  AuthenticatedLcdVideosRoute: typeof AuthenticatedLcdVideosRoute
+  AuthenticatedPaymentsApprovedRoute: typeof AuthenticatedPaymentsApprovedRoute
+  AuthenticatedPaymentsHistoryRoute: typeof AuthenticatedPaymentsHistoryRoute
+  AuthenticatedPaymentsPaidRoute: typeof AuthenticatedPaymentsPaidRoute
+  AuthenticatedPaymentsPendingRoute: typeof AuthenticatedPaymentsPendingRoute
+  AuthenticatedBillboardsIndexRoute: typeof AuthenticatedBillboardsIndexRoute
+  AuthenticatedInfluencersIndexRoute: typeof AuthenticatedInfluencersIndexRoute
+  AuthenticatedLcdIndexRoute: typeof AuthenticatedLcdIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedBillboardsPaymentsRoute: AuthenticatedBillboardsPaymentsRoute,
+  AuthenticatedBudgetExpensesRoute: AuthenticatedBudgetExpensesRoute,
+  AuthenticatedBudgetInternationalRoute: AuthenticatedBudgetInternationalRoute,
+  AuthenticatedBudgetLocalRoute: AuthenticatedBudgetLocalRoute,
+  AuthenticatedInfluencersDeliveriesRoute:
+    AuthenticatedInfluencersDeliveriesRoute,
+  AuthenticatedInfluencersPaymentsRoute: AuthenticatedInfluencersPaymentsRoute,
+  AuthenticatedInfluencersTargetsRoute: AuthenticatedInfluencersTargetsRoute,
+  AuthenticatedLcdPaymentsRoute: AuthenticatedLcdPaymentsRoute,
+  AuthenticatedLcdVideosRoute: AuthenticatedLcdVideosRoute,
+  AuthenticatedPaymentsApprovedRoute: AuthenticatedPaymentsApprovedRoute,
+  AuthenticatedPaymentsHistoryRoute: AuthenticatedPaymentsHistoryRoute,
+  AuthenticatedPaymentsPaidRoute: AuthenticatedPaymentsPaidRoute,
+  AuthenticatedPaymentsPendingRoute: AuthenticatedPaymentsPendingRoute,
+  AuthenticatedBillboardsIndexRoute: AuthenticatedBillboardsIndexRoute,
+  AuthenticatedInfluencersIndexRoute: AuthenticatedInfluencersIndexRoute,
+  AuthenticatedLcdIndexRoute: AuthenticatedLcdIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
