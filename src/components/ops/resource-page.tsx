@@ -45,6 +45,8 @@ export type Field = {
   options?: Array<{ value: string; label: string }>;
   required?: boolean;
   defaultValue?: string | number;
+  placeholder?: string;
+  colSpan?: 1 | 2;
 };
 
 export function DataTable({
@@ -140,6 +142,7 @@ function RecordDialog({
   title,
   onSubmit,
   saving,
+  submitLabel = "Save record",
 }: {
   open: boolean;
   onOpenChange: (v: boolean) => void;
@@ -148,6 +151,7 @@ function RecordDialog({
   title: string;
   onSubmit: (values: Row) => void;
   saving?: boolean | undefined;
+  submitLabel?: string | undefined;
 }) {
   const [values, setValues] = useState<Row>({});
 
@@ -188,7 +192,7 @@ function RecordDialog({
           {fields.map((f) => (
             <div
               key={f.key}
-              className={f.type === "textarea" ? "sm:col-span-2 space-y-2" : "space-y-2"}
+              className={f.type === "textarea" || f.colSpan === 2 ? "sm:col-span-2 space-y-2" : "space-y-2"}
             >
               <Label htmlFor={f.key}>{f.label}</Label>
               {f.type === "select" ? (
@@ -210,6 +214,7 @@ function RecordDialog({
               ) : f.type === "textarea" ? (
                 <Textarea
                   id={f.key}
+                  placeholder={f.placeholder ?? ""}
                   value={String(current[f.key] ?? "")}
                   onChange={(e) => setValues((p) => ({ ...p, [f.key]: e.target.value }))}
                 />
@@ -218,6 +223,7 @@ function RecordDialog({
                   id={f.key}
                   type={f.type === "number" ? "number" : f.type === "date" || f.type === "month" ? "date" : "text"}
                   required={f.required}
+                  placeholder={f.placeholder ?? ""}
                   value={String(current[f.key] ?? "")}
                   onChange={(e) => setValues((p) => ({ ...p, [f.key]: e.target.value }))}
                 />
@@ -229,7 +235,7 @@ function RecordDialog({
               Cancel
             </Button>
             <Button type="submit" disabled={saving}>
-              {saving ? "Saving…" : "Save record"}
+              {saving ? "Saving…" : submitLabel}
             </Button>
           </DialogFooter>
         </form>
@@ -252,6 +258,8 @@ export function ResourcePage({
   transform,
   headerExtra,
   readOnly,
+  dialogTitle,
+  submitLabel,
 }: {
   title: string;
   description?: string | undefined;
@@ -266,6 +274,8 @@ export function ResourcePage({
   transform?: ((rows: Row[]) => Row[]) | undefined;
   headerExtra?: ((rows: Row[]) => ReactNode) | undefined;
   readOnly?: boolean | undefined;
+  dialogTitle?: string | undefined;
+  submitLabel?: string | undefined;
 }) {
   const { data = [], isLoading } = useRows(table, { select, order, filters });
   const save = useSaveRow(table);
@@ -338,7 +348,8 @@ export function ResourcePage({
         fields={fields}
         initial={editing}
         saving={save.isPending}
-        title={editing ? `Edit ${title.replace(/s$/, "")}` : addLabel}
+        title={editing ? `Edit ${title.replace(/s$/, "")}` : (dialogTitle ?? addLabel)}
+        submitLabel={submitLabel ?? "Save record"}
         onSubmit={(values) =>
           save.mutate(values, {
             onSuccess: () => {
