@@ -18,41 +18,36 @@ export const influencerColumns: Column[] = [
       </div>
     ),
   },
-  { key: "platform", label: "Platform", render: (r) => <span className="capitalize">{r["platform"]}</span> },
   { key: "category", label: "Category" },
-  { key: "followers", label: "Followers", align: "right", render: (r) => compact(r["followers"]) },
-  { key: "rate", label: "Rate", align: "right", render: (r) => currency(r["rate"]) },
-  { key: "country", label: "Country" },
+  { key: "contact_phone", label: "Phone" },
+  { key: "target_videos_month", label: "Target/mo", align: "right" },
+  { key: "rate", label: "Salary", align: "right", render: (r) => currency(r["rate"]) },
+  {
+    key: "agreement",
+    label: "Agreement",
+    render: (r) =>
+      r["agreement_start"] || r["agreement_end"]
+        ? `${formatDate(r["agreement_start"])} → ${formatDate(r["agreement_end"])}`
+        : "—",
+  },
   { key: "status", label: "Status", render: (r) => <StatusBadge value={r["status"]} /> },
 ];
 
 export const influencerFields: Field[] = [
-  { key: "name", label: "Name", required: true },
-  { key: "handle", label: "Handle" },
-  {
-    key: "platform",
-    label: "Platform",
-    type: "select",
-    defaultValue: "instagram",
-    options: [
-      { value: "instagram", label: "Instagram" },
-      { value: "tiktok", label: "TikTok" },
-      { value: "youtube", label: "YouTube" },
-      { value: "x", label: "X" },
-      { value: "snapchat", label: "Snapchat" },
-    ],
-  },
-  { key: "category", label: "Category" },
-  { key: "followers", label: "Followers", type: "number" },
-  { key: "rate", label: "Rate (USD)", type: "number" },
-  { key: "contact_email", label: "Contact email" },
-  { key: "contact_phone", label: "Contact phone" },
-  { key: "country", label: "Country" },
+  { key: "name", label: "Full Name", required: true },
+  { key: "handle", label: "TikTok Username", placeholder: "@username" },
+  { key: "contact_phone", label: "Phone" },
+  { key: "category", label: "Category / Niche", placeholder: "e.g. Beauty, Food" },
+  { key: "target_videos_month", label: "Target Videos/Month", type: "number", defaultValue: 0 },
+  { key: "rate", label: "Salary", type: "number", defaultValue: 0 },
+  { key: "agreement_start", label: "Agreement Start", type: "date" },
+  { key: "agreement_end", label: "Agreement End", type: "date" },
   {
     key: "status",
     label: "Status",
     type: "select",
     defaultValue: "active",
+    colSpan: 2,
     options: [
       { value: "active", label: "Active" },
       { value: "paused", label: "Paused" },

@@ -241,6 +241,8 @@ export type Database = {
       }
       influencers: {
         Row: {
+          agreement_end: string | null
+          agreement_start: string | null
           category: string | null
           contact_email: string | null
           contact_phone: string | null
@@ -254,9 +256,12 @@ export type Database = {
           platform: string
           rate: number
           status: string
+          target_videos_month: number
           updated_at: string
         }
         Insert: {
+          agreement_end?: string | null
+          agreement_start?: string | null
           category?: string | null
           contact_email?: string | null
           contact_phone?: string | null
@@ -270,9 +275,12 @@ export type Database = {
           platform?: string
           rate?: number
           status?: string
+          target_videos_month?: number
           updated_at?: string
         }
         Update: {
+          agreement_end?: string | null
+          agreement_start?: string | null
           category?: string | null
           contact_email?: string | null
           contact_phone?: string | null
@@ -286,6 +294,7 @@ export type Database = {
           platform?: string
           rate?: number
           status?: string
+          target_videos_month?: number
           updated_at?: string
         }
         Relationships: []
