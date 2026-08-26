@@ -36,6 +36,7 @@ import { Route as AuthenticatedReportsInfluencersRouteImport } from './routes/_a
 import { Route as AuthenticatedReportsLcdRouteImport } from './routes/_authenticated/reports.lcd'
 import { Route as AuthenticatedReportsMonthlyRouteImport } from './routes/_authenticated/reports.monthly'
 import { Route as AuthenticatedReportsPaymentsRouteImport } from './routes/_authenticated/reports.payments'
+import { Route as AuthenticatedSettingsUsersRouteImport } from './routes/_authenticated/settings.users'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -191,6 +192,12 @@ const AuthenticatedReportsPaymentsRoute =
     path: '/reports/payments',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSettingsUsersRoute =
+  AuthenticatedSettingsUsersRouteImport.update({
+    id: '/settings/users',
+    path: '/settings/users',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -216,6 +223,7 @@ export interface FileRoutesByFullPath {
   '/reports/lcd': typeof AuthenticatedReportsLcdRoute
   '/reports/monthly': typeof AuthenticatedReportsMonthlyRoute
   '/reports/payments': typeof AuthenticatedReportsPaymentsRoute
+  '/settings/users': typeof AuthenticatedSettingsUsersRoute
   '/billboards/': typeof AuthenticatedBillboardsIndexRoute
   '/influencers/': typeof AuthenticatedInfluencersIndexRoute
   '/lcd/': typeof AuthenticatedLcdIndexRoute
@@ -244,6 +252,7 @@ export interface FileRoutesByTo {
   '/reports/lcd': typeof AuthenticatedReportsLcdRoute
   '/reports/monthly': typeof AuthenticatedReportsMonthlyRoute
   '/reports/payments': typeof AuthenticatedReportsPaymentsRoute
+  '/settings/users': typeof AuthenticatedSettingsUsersRoute
   '/billboards': typeof AuthenticatedBillboardsIndexRoute
   '/influencers': typeof AuthenticatedInfluencersIndexRoute
   '/lcd': typeof AuthenticatedLcdIndexRoute
@@ -274,6 +283,7 @@ export interface FileRoutesById {
   '/_authenticated/reports/lcd': typeof AuthenticatedReportsLcdRoute
   '/_authenticated/reports/monthly': typeof AuthenticatedReportsMonthlyRoute
   '/_authenticated/reports/payments': typeof AuthenticatedReportsPaymentsRoute
+  '/_authenticated/settings/users': typeof AuthenticatedSettingsUsersRoute
   '/_authenticated/billboards/': typeof AuthenticatedBillboardsIndexRoute
   '/_authenticated/influencers/': typeof AuthenticatedInfluencersIndexRoute
   '/_authenticated/lcd/': typeof AuthenticatedLcdIndexRoute
@@ -304,6 +314,7 @@ export interface FileRouteTypes {
     | '/reports/lcd'
     | '/reports/monthly'
     | '/reports/payments'
+    | '/settings/users'
     | '/billboards/'
     | '/influencers/'
     | '/lcd/'
@@ -332,6 +343,7 @@ export interface FileRouteTypes {
     | '/reports/lcd'
     | '/reports/monthly'
     | '/reports/payments'
+    | '/settings/users'
     | '/billboards'
     | '/influencers'
     | '/lcd'
@@ -361,6 +373,7 @@ export interface FileRouteTypes {
     | '/_authenticated/reports/lcd'
     | '/_authenticated/reports/monthly'
     | '/_authenticated/reports/payments'
+    | '/_authenticated/settings/users'
     | '/_authenticated/billboards/'
     | '/_authenticated/influencers/'
     | '/_authenticated/lcd/'
@@ -563,6 +576,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedReportsPaymentsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/settings/users': {
+      id: '/_authenticated/settings/users'
+      path: '/settings/users'
+      fullPath: '/settings/users'
+      preLoaderRoute: typeof AuthenticatedSettingsUsersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -588,6 +608,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedReportsLcdRoute: typeof AuthenticatedReportsLcdRoute
   AuthenticatedReportsMonthlyRoute: typeof AuthenticatedReportsMonthlyRoute
   AuthenticatedReportsPaymentsRoute: typeof AuthenticatedReportsPaymentsRoute
+  AuthenticatedSettingsUsersRoute: typeof AuthenticatedSettingsUsersRoute
   AuthenticatedBillboardsIndexRoute: typeof AuthenticatedBillboardsIndexRoute
   AuthenticatedInfluencersIndexRoute: typeof AuthenticatedInfluencersIndexRoute
   AuthenticatedLcdIndexRoute: typeof AuthenticatedLcdIndexRoute
@@ -616,6 +637,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedReportsLcdRoute: AuthenticatedReportsLcdRoute,
   AuthenticatedReportsMonthlyRoute: AuthenticatedReportsMonthlyRoute,
   AuthenticatedReportsPaymentsRoute: AuthenticatedReportsPaymentsRoute,
+  AuthenticatedSettingsUsersRoute: AuthenticatedSettingsUsersRoute,
   AuthenticatedBillboardsIndexRoute: AuthenticatedBillboardsIndexRoute,
   AuthenticatedInfluencersIndexRoute: AuthenticatedInfluencersIndexRoute,
   AuthenticatedLcdIndexRoute: AuthenticatedLcdIndexRoute,
