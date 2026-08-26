@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_logs: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          module: string
+          new_value: Json | null
+          old_value: Json | null
+          record_id: string | null
+          record_label: string | null
+          user_email: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          id?: string
+          module: string
+          new_value?: Json | null
+          old_value?: Json | null
+          record_id?: string | null
+          record_label?: string | null
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          module?: string
+          new_value?: Json | null
+          old_value?: Json | null
+          record_id?: string | null
+          record_label?: string | null
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       billboards: {
         Row: {
           city: string | null
@@ -475,22 +514,79 @@ export type Database = {
       }
       profiles: {
         Row: {
+          avatar_url: string | null
           created_at: string
           email: string | null
           full_name: string | null
           id: string
+          phone: string | null
+          status: string
+          username: string | null
         }
         Insert: {
+          avatar_url?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
           id: string
+          phone?: string | null
+          status?: string
+          username?: string | null
         }
         Update: {
+          avatar_url?: string | null
           created_at?: string
           email?: string | null
           full_name?: string | null
           id?: string
+          phone?: string | null
+          status?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      user_permissions: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          module: string
+          user_id: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          id?: string
+          module: string
+          user_id: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          module?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
         }
         Relationships: []
       }
@@ -499,10 +595,19 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_perm: { Args: { _action: string; _module: string }; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: never; Returns: boolean }
+      payment_module: { Args: { _category: string }; Returns: string }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -629,6 +734,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
