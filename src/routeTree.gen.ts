@@ -36,6 +36,7 @@ import { Route as AuthenticatedReportsInfluencersRouteImport } from './routes/_a
 import { Route as AuthenticatedReportsLcdRouteImport } from './routes/_authenticated/reports.lcd'
 import { Route as AuthenticatedReportsMonthlyRouteImport } from './routes/_authenticated/reports.monthly'
 import { Route as AuthenticatedReportsPaymentsRouteImport } from './routes/_authenticated/reports.payments'
+import { Route as AuthenticatedSettingsActivityRouteImport } from './routes/_authenticated/settings.activity'
 import { Route as AuthenticatedSettingsUsersRouteImport } from './routes/_authenticated/settings.users'
 
 const IndexRoute = IndexRouteImport.update({
@@ -192,6 +193,12 @@ const AuthenticatedReportsPaymentsRoute =
     path: '/reports/payments',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSettingsActivityRoute =
+  AuthenticatedSettingsActivityRouteImport.update({
+    id: '/settings/activity',
+    path: '/settings/activity',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSettingsUsersRoute =
   AuthenticatedSettingsUsersRouteImport.update({
     id: '/settings/users',
@@ -223,6 +230,7 @@ export interface FileRoutesByFullPath {
   '/reports/lcd': typeof AuthenticatedReportsLcdRoute
   '/reports/monthly': typeof AuthenticatedReportsMonthlyRoute
   '/reports/payments': typeof AuthenticatedReportsPaymentsRoute
+  '/settings/activity': typeof AuthenticatedSettingsActivityRoute
   '/settings/users': typeof AuthenticatedSettingsUsersRoute
   '/billboards/': typeof AuthenticatedBillboardsIndexRoute
   '/influencers/': typeof AuthenticatedInfluencersIndexRoute
@@ -252,6 +260,7 @@ export interface FileRoutesByTo {
   '/reports/lcd': typeof AuthenticatedReportsLcdRoute
   '/reports/monthly': typeof AuthenticatedReportsMonthlyRoute
   '/reports/payments': typeof AuthenticatedReportsPaymentsRoute
+  '/settings/activity': typeof AuthenticatedSettingsActivityRoute
   '/settings/users': typeof AuthenticatedSettingsUsersRoute
   '/billboards': typeof AuthenticatedBillboardsIndexRoute
   '/influencers': typeof AuthenticatedInfluencersIndexRoute
@@ -283,6 +292,7 @@ export interface FileRoutesById {
   '/_authenticated/reports/lcd': typeof AuthenticatedReportsLcdRoute
   '/_authenticated/reports/monthly': typeof AuthenticatedReportsMonthlyRoute
   '/_authenticated/reports/payments': typeof AuthenticatedReportsPaymentsRoute
+  '/_authenticated/settings/activity': typeof AuthenticatedSettingsActivityRoute
   '/_authenticated/settings/users': typeof AuthenticatedSettingsUsersRoute
   '/_authenticated/billboards/': typeof AuthenticatedBillboardsIndexRoute
   '/_authenticated/influencers/': typeof AuthenticatedInfluencersIndexRoute
@@ -314,6 +324,7 @@ export interface FileRouteTypes {
     | '/reports/lcd'
     | '/reports/monthly'
     | '/reports/payments'
+    | '/settings/activity'
     | '/settings/users'
     | '/billboards/'
     | '/influencers/'
@@ -343,6 +354,7 @@ export interface FileRouteTypes {
     | '/reports/lcd'
     | '/reports/monthly'
     | '/reports/payments'
+    | '/settings/activity'
     | '/settings/users'
     | '/billboards'
     | '/influencers'
@@ -373,6 +385,7 @@ export interface FileRouteTypes {
     | '/_authenticated/reports/lcd'
     | '/_authenticated/reports/monthly'
     | '/_authenticated/reports/payments'
+    | '/_authenticated/settings/activity'
     | '/_authenticated/settings/users'
     | '/_authenticated/billboards/'
     | '/_authenticated/influencers/'
@@ -576,6 +589,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedReportsPaymentsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/settings/activity': {
+      id: '/_authenticated/settings/activity'
+      path: '/settings/activity'
+      fullPath: '/settings/activity'
+      preLoaderRoute: typeof AuthenticatedSettingsActivityRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/settings/users': {
       id: '/_authenticated/settings/users'
       path: '/settings/users'
@@ -608,6 +628,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedReportsLcdRoute: typeof AuthenticatedReportsLcdRoute
   AuthenticatedReportsMonthlyRoute: typeof AuthenticatedReportsMonthlyRoute
   AuthenticatedReportsPaymentsRoute: typeof AuthenticatedReportsPaymentsRoute
+  AuthenticatedSettingsActivityRoute: typeof AuthenticatedSettingsActivityRoute
   AuthenticatedSettingsUsersRoute: typeof AuthenticatedSettingsUsersRoute
   AuthenticatedBillboardsIndexRoute: typeof AuthenticatedBillboardsIndexRoute
   AuthenticatedInfluencersIndexRoute: typeof AuthenticatedInfluencersIndexRoute
@@ -637,6 +658,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedReportsLcdRoute: AuthenticatedReportsLcdRoute,
   AuthenticatedReportsMonthlyRoute: AuthenticatedReportsMonthlyRoute,
   AuthenticatedReportsPaymentsRoute: AuthenticatedReportsPaymentsRoute,
+  AuthenticatedSettingsActivityRoute: AuthenticatedSettingsActivityRoute,
   AuthenticatedSettingsUsersRoute: AuthenticatedSettingsUsersRoute,
   AuthenticatedBillboardsIndexRoute: AuthenticatedBillboardsIndexRoute,
   AuthenticatedInfluencersIndexRoute: AuthenticatedInfluencersIndexRoute,
