@@ -74,8 +74,8 @@ function useTeam() {
         phone: p.phone,
         avatar_url: p.avatar_url,
         status: p.status ?? "active",
-        role: (roles ?? []).find((r: any) => r.user_id === p.id)?.role ?? "user",
-        permissions: (perms ?? [])
+        role: ((roles ?? []) as any[]).find((r: any) => r.user_id === p.id)?.role ?? "user",
+        permissions: ((perms ?? []) as any[])
           .filter((x: any) => x.user_id === p.id)
           .map((x: any) => permKey(x.module, x.action)),
       }));
